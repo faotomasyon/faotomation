@@ -24,7 +24,7 @@ class AuthController extends MainController
             "message" => "Success!"
         ];
         
-        // $this->logger('test');
+        $this->logger->addInfo("test");
 
         return $this->response(StatusCode::HTTP_OK, $resource);
     }
