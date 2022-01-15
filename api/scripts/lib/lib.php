@@ -23,6 +23,11 @@ function insertUser($name, $lastname, $email, $password, $verification, $role, $
     $conn = $GLOBALS['conn'];
     $password = hash('sha512', $password);
 
+    $logger = $GLOBALS['logger'];
+    $errorLogger = $GLOBALS['errorLogger'];
+
+    $logger->info("Users adding email: $email");
+
     $sql = 'INSERT INTO users (id, name, lastname, email, password, verification, role, status)
         VALUES(UUID(), :name, :lastname, :email, :password, :verification, :role, :status)';
 
@@ -36,7 +41,7 @@ function insertUser($name, $lastname, $email, $password, $verification, $role, $
     $query->bindParam(':status', $status, \PDO::PARAM_INT);
 
     if (!$query->execute()) {
-        die(json_encode($query->errorInfo()));
+        $errorLogger->error("Query could not execute. Error detail: " . json_encode($query->errorInfo()));
     }
 
     return $conn->lastInsertId();

@@ -5,6 +5,13 @@ use App\middleware;
 
 $app->group('', function () {
 
-    $this->get('/test', controller\AuthController::class . ':test')->setName('login');
+    $this->get('/', controller\UtilController::class . ':endpoints');
+
+});
+
+$app->group('', function () {
+
+    $this->post('/login', controller\AuthController::class . ':login');
+    $this->post('/logout', controller\AuthController::class . ':logout');
 
 });

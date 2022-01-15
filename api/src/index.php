@@ -8,6 +8,10 @@ $config = [
     ],
 ];
 
+
+session_name('faotomation');
+session_start();
+
 $app = new \Slim\App($config);
 
 $container = $app->getContainer();
