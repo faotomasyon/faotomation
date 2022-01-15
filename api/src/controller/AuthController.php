@@ -41,10 +41,8 @@ class AuthController extends MainController
 
                 } else {
     
-                    $tokenGeneric = 'testSecretKey' . $_SERVER["SERVER_NAME"];
-    
+                    $tokenGeneric = time() . 'testSecretKey' . $_SERVER["SERVER_NAME"];
                     $token = hash('sha256', $tokenGeneric. $user['email']);
-                    
                     $_SESSION['user']['token'] = $token;
     
                     $resource = [
@@ -68,30 +66,20 @@ class AuthController extends MainController
     {   
         $params = $request->getParsedBody();
 
-        $token = isset($_SESSION['user']['token']) && !empty($_SESSION['user']['token']) ? $_SESSION['user']['token'] : null;
+        $_SESSION = array();
 
-        if($token != null){
-            
-            $_SESSION = array();
-
-            if (ini_get("session.use_cookies")) {
-                $params = session_get_cookie_params();
-                setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"]);
-                session_destroy();
-            }
-
-            $resource = [
-                "message" => "Logout successfully,"
-            ];
-            
-            return $this->response(StatusCode::HTTP_BAD_REQUEST, $resource);
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"]);
+            session_destroy();
         }
 
         $resource = [
-            "message" => "Failed! Incorrect Email!"
+            "message" => "Logout successfully,"
         ];
         
-        return $this->response(StatusCode::HTTP_BAD_REQUEST, $resource);
+        return $this->response(StatusCode::HTTP_OK, $resource);
+        
     }
 
 }

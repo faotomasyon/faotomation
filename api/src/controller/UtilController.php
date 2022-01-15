@@ -28,8 +28,13 @@ class UtilController extends MainController
                 'logout' => $_SERVER['HTTP_HOST'] . '/logout'
             ]
         ];
-        
-        return $this->response(StatusCode::HTTP_BAD_REQUEST, $resource);
+
+        if(!isset($_SERVER['CONTENT_TYPE'])){
+            $resource['message'] = 'BAD REQUEST! Please check last request. You can use these endpoints.';
+            return $this->response(StatusCode::HTTP_BAD_REQUEST, $resource);
+        }
+
+        return $this->response(StatusCode::HTTP_OK, $resource);
     }
 
 }
