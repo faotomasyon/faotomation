@@ -17,3 +17,27 @@ function executeQuery($query)
 
     return true;
 }
+
+function insertUser($name, $lastname, $email, $password, $verification, $role, $status)
+{
+    $conn = $GLOBALS['conn'];
+    $password = hash('sha512', $password);
+
+    $sql = 'INSERT INTO users (id, name, lastname, email, password, verification, role, status)
+        VALUES(UUID(), :name, :lastname, :email, :password, :verification, :role, :status)';
+
+    $query = $conn->prepare($sql);
+    $query->bindParam(':name', $name, \PDO::PARAM_STR);
+    $query->bindParam(':lastname', $lastname, \PDO::PARAM_STR);
+    $query->bindParam(':email', $email, \PDO::PARAM_STR);
+    $query->bindParam(':password', $password, \PDO::PARAM_STR);
+    $query->bindParam(':verification', $verification, \PDO::PARAM_INT);
+    $query->bindParam(':role', $role, \PDO::PARAM_INT);
+    $query->bindParam(':status', $status, \PDO::PARAM_INT);
+
+    if (!$query->execute()) {
+        die(json_encode($query->errorInfo()));
+    }
+
+    return $conn->lastInsertId();
+}
