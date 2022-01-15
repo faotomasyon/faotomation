@@ -13,7 +13,7 @@ class AuthModel
     public function __construct(ContainerInterface $container)
     {
         $this->dbConnection = new Db();
-        $this->dbConnection->connect();
+        $this->dbConnection = $this->dbConnection->connect();
     }
 
     public function login($params)

@@ -1,7 +1,5 @@
 <?php
 
-use App\controller\MainController;
-
 require  __DIR__ . '/../vendor/autoload.php';
 
 $config = [
