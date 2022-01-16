@@ -21,11 +21,19 @@ class UtilController extends MainController
         
         $resource = [
             "GET" => [
-                '/' => $_SERVER['HTTP_HOST'],
+                'home' => $_SERVER['HTTP_HOST'],
+                'users' => $_SERVER['HTTP_HOST'] . '/users',
+                'user detail' => $_SERVER['HTTP_HOST'] . '/users/{user_id}',
             ],
             "POST" => [
                 'login' => $_SERVER['HTTP_HOST'] . '/login',
                 'logout' => $_SERVER['HTTP_HOST'] . '/logout'
+            ],
+            "PUT" => [
+                'update user' => $_SERVER['HTTP_HOST'] . '/users/{user_id}',
+            ],
+            "DELETE" => [
+                'delete user' => $_SERVER['HTTP_HOST'] . '/users/{user_id}',
             ]
         ];
 

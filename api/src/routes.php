@@ -14,3 +14,14 @@ $app->group('', function () {
     $this->post('/logout', controller\AuthController::class . ':logout');
 
 })->add(new MainMiddleware($container));
+
+
+$app->group('/users', function () {
+
+    $this->get('', controller\UserController::class . ':getUsers');
+    $this->get('/{id:[0-9]+}', controller\UserController::class . ':getUserDetail');
+    $this->post('', controller\UserController::class . ':addUser');
+    $this->put('/{id:[0-9]+}', controller\UserController::class . ':updateUser');
+    $this->delete('/{id:[0-9]+}', controller\UserController::class . ':deleteUser');
+
+})->add(new MainMiddleware($container));
