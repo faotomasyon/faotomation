@@ -5,7 +5,7 @@ namespace App\model;
 use App\config\Db;
 use Psr\Container\ContainerInterface;
 
-class UserModel
+class CoachModel
 {
     private $dbConnection;
 
@@ -15,14 +15,14 @@ class UserModel
         $this->dbConnection = $this->dbConnection->connect();
     }
 
-    public function getUsers()
+    public function getCoaches()
     {
-        $sql = "SELECT * FROM users WHERE role = 0";
+        $sql = "SELECT * FROM users WHERE role = 1";
 
         $query = $this->dbConnection->prepare($sql);
         
         if (!$query->execute()) {
-            $this->logger->addWarning("User could not fetch. Details = " . json_encode($query->errorInfo()));
+            $this->logger->addWarning("Coaches could not fetch. Details = " . json_encode($query->errorInfo()));
         }
         
         $users = [];
@@ -35,9 +35,9 @@ class UserModel
         return $users;
     }
 
-    public function getUserInfos($id)
+    public function getCoachInfos($id)
     {
-        $sql = "SELECT * FROM users INNER JOIN player_details as pd ON pd.id = users.id WHERE users.id = :id AND WHERE role = 0";
+        $sql = "SELECT * FROM users INNER JOIN coach_details as pd ON pd.id = users.id WHERE users.id = :id AND role = 1";
 
         $query = $this->dbConnection->prepare($sql);
         $query->bindParam(':id', $id, \PDO::PARAM_INT);
@@ -55,7 +55,7 @@ class UserModel
         return $user;
     }
 
-    public function addUser($params)
+    public function addCoach($params)
     {
         $sql = 'INSERT INTO users (name, lastname, email, password, verification, role, status)
         VALUES(:name, :lastname, :email, :password, :verification, :role, :status)';
@@ -63,7 +63,7 @@ class UserModel
         $password = hash('sha512', $params['password']);
         $verification = hash('sha512', time() . 'testSecretKey' . $password);
         
-        $params['role'] = 0;
+        $params['role'] = 1;
         $params['status'] = 0;
 
         $query = $this->dbConnection->prepare($sql);
@@ -83,9 +83,9 @@ class UserModel
         return $this->dbConnection->lastInsertId();
     }
 
-    public function updateUser($params)
+    public function updateCoach($params)
     {
-        $sql = 'UPDATE users SET name = :name, lastname = :lastname, email = :email, password = :password, verification = :verification, status = :status, updated_at = :updated_at WHERE id = :id AND role = 0';
+        $sql = 'UPDATE users SET name = :name, lastname = :lastname, email = :email, password = :password, verification = :verification, status = :status, updated_at = :updated_at WHERE id = :id AND role = 1';
 
         $password = hash('sha512', $params['password']);
         
@@ -109,9 +109,9 @@ class UserModel
         return true;
     }
 
-    public function deleteUser($id)
+    public function deleteCoach($id)
     {
-        $sql = 'DELETE FROM users WHERE id = :id AND role = 0';
+        $sql = 'DELETE FROM users WHERE id = :id AND role = 1';
 
         $query = $this->dbConnection->prepare($sql);
         $query->bindParam(':id', $id, \PDO::PARAM_INT);
