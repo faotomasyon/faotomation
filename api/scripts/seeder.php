@@ -34,6 +34,25 @@ $logger->info("# SCRIPT STARTED #");
 $dbConnection = new Db();
 $conn = $dbConnection->connect();
 
+
+$queries = [
+    'SET FOREIGN_KEY_CHECKS = 0;',
+    'TRUNCATE users',
+    'TRUNCATE player_details',
+    'TRUNCATE classes',
+    'TRUNCATE classes_players',
+    'TRUNCATE coach_details',
+    'TRUNCATE classes_coaches',
+    'TRUNCATE coach_notes',
+    'TRUNCATE job',
+    'SET FOREIGN_KEY_CHECKS = 1;'
+];
+
+foreach ($queries as $query) {
+    executeQuery($query);
+}
+
+
 /**
  * @Roles;
  *      0 => user (player)
@@ -52,13 +71,56 @@ $admins = [
 ];
 
 foreach ($admins as $admin) {
-    $adminId = insertUser($admin['name'], $admin['lastname'], $admin['email'], $admin['password'], $admin['verification'], $admin['role'], $admin['status']);
+    $adminId = insertUser($admin['name'], $admin['lastname'], $admin['email'], $admin['password'], $admin['verification'], $admin['role'], $admin['status']);    
 }
 
 $faker = Faker\Factory::create();
 
 for ($i = 0; $i < 10; $i++) {
-    insertUser($faker->name, $faker->userName, $faker->email, $faker->password, 'test', rand(1, 2), rand(0, 1));
+
+    $role = rand(0, 2);
+    $userId = insertUser($faker->name, $faker->userName, $faker->email, $faker->password, 'test', $role, rand(0, 1));
+
+
+    if($role == 0){
+
+        $details = [
+            'id' => $userId,
+            'photo' => $faker->imageUrl($width = 640, $height = 480),
+            'birth_date' => $faker->dateTimeThisCentury->format('Y-m-d'),
+            'birth_place' => $faker->address,
+            'weight' => $faker->biasedNumberBetween($min = 40, $max = 80),
+            'height' => $faker->biasedNumberBetween($min = 140, $max = 190),
+            'position' => $faker->randomElements(['GK', 'SW', 'CB', 'RB', 'LB', 'RWB', 'LWB', 'DM', 'CM', 'AM', 'RW','LW', 'CF', 'S'], 1)[0],
+            'foot' => $faker->randomElements(['LEFT', 'BOTH', 'RIGHT'], 1)[0],
+            'market_value' => $faker->randomNumber(3),
+            'parent_name' => $faker->name,
+            'parent_phone' => $faker->phoneNumber,
+            'parent_mail' => $faker->email,
+            'address' => $faker->address,
+            'country_code' => $faker->countryCode
+        ];
+
+        insertPlayerDetails($details);
+        
+    } else if($role == 1){
+        
+        $details = [
+            'id' => $userId,
+            'photo' => $faker->imageUrl($width = 640, $height = 480),
+            'phone' => $faker->phoneNumber,
+            'birth_date' => $faker->dateTimeThisCentury->format('Y-m-d'),
+            'birth_place' => $faker->address,
+            'weight' => $faker->biasedNumberBetween($min = 40, $max = 80),
+            'height' => $faker->biasedNumberBetween($min = 140, $max = 190),
+            'address' => $faker->address,
+            'country_code' => $faker->countryCode
+        ];
+
+        insertCoachDetails($details);
+
+    }
+
 }
 
 

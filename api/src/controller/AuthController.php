@@ -23,11 +23,11 @@ class AuthController extends MainController
         $params = $request->getParsedBody();
         $user = $this->authModel->getUser($params['email']);
 
+        $resource = [
+            "message" => "Failed! Could not login. Please make sure you have entered the correct values!"
+        ];
+
         if ($user) {
-            
-            $resource = [
-                "message" => "Failed! Incorrect Password!",
-            ];
             
             $password = hash('sha512', $params['password']);
             
@@ -54,12 +54,8 @@ class AuthController extends MainController
 
             return $this->response(StatusCode::HTTP_OK, $resource);
         }
-
-        $resource = [
-            "message" => "Failed! Incorrect Email!"
-        ];
         
-        return $this->response(StatusCode::HTTP_BAD_REQUEST, $resource);
+        return $this->response(StatusCode::HTTP_UNAUTHORIZED, $resource);
     }
 
     public function logout(ServerRequestInterface $request, ResponseInterface $response, $args)

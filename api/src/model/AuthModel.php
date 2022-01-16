@@ -4,7 +4,6 @@ namespace App\model;
 
 use App\config\Db;
 use Psr\Container\ContainerInterface;
-use Slim\Http\StatusCode;
 
 class AuthModel
 {
