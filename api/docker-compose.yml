@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  faotomation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: faotomation
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www/html/faotomation
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "1"
+      MYSQL_ROOT_PASSWORD: "faotomation"
+      MYSQL_DATABASE: "faotomation"
+      MYSQL_USER: "faotomation"
+      MYSQL_PASSWORD: "faotomation"
+    volumes:
+      - ./scripts/lib/:/docker-entrypoint-initdb.d
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - 8080:80

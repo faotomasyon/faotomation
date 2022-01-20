@@ -8,9 +8,9 @@ use Slim\Http\StatusCode;
 
 class Db
 {
-    private $dbHost = 'localhost';
-    private $dbUser = 'root';
-    private $dbPassword = '';
+    private $dbHost = 'db';
+    private $dbUser = 'faotomation';
+    private $dbPassword = 'faotomation';
     private $dbName = 'faotomation';
 
     public function connect()

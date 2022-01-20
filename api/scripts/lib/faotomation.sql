@@ -14,7 +14,7 @@ CREATE TABLE `users` (
 CREATE TABLE `player_details` (
 	`id` int PRIMARY KEY,
 	`photo` varchar(255) NULL,
-	`birth_date` timestamp NOT NULL,
+	`birth_date` varchar(255) NOT NULL,
 	`birth_place` varchar(255) NOT NULL,
 	`weight` int NOT NULL,
 	`height` int NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `coach_details` (
 	`id` int PRIMARY KEY,
 	`photo` varchar(255) NULL,
 	`phone` varchar(255) NOT NULL,
-	`birth_date` timestamp NOT NULL,
+	`birth_date` varchar(255) NOT NULL,
 	`birth_place` varchar(255) NOT NULL,
 	`weight` int NOT NULL,
 	`height` int NOT NULL,
