@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import '/route/route.dart' as route;
 
-class LoginPage extends StatelessWidget {
+class ForgotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
                 shrinkWrap: true,
                 children: [
                   Text(
-                    'Giriş',
+                    'Şifremi Unuttum',
                     style: TextStyle(
                         fontSize: 65,
                         fontWeight: FontWeight.bold,
@@ -57,42 +57,6 @@ class LoginPage extends StatelessWidget {
                           )),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    style: TextStyle(fontSize: 25),
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
-                        prefixIcon: Icon(Icons.lock),
-                        labelText: "Şifre",
-                        hintText: "Şifre",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(
-                            color: Colors.blue,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                            ))),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.pushReplacementNamed(
-                        context, route.forgotPage),
-                    child: Text(
-                      'Şifremi Unuttum ?',
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.right,
-                    ),
-                  )
                 ],
               ),
             )),
@@ -121,7 +85,7 @@ class LoginPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(5),
                     child: const Text(
-                      'Giriş',
+                      'Gönder',
                       style: TextStyle(color: Colors.white, fontSize: 34),
                     ),
                   ),
@@ -132,9 +96,9 @@ class LoginPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(bottom: 5, left: 15),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, route.registerPage),
+                onTap: () => Navigator.pushNamed(context, route.loginPage),
                 child: Text(
-                  'Yeni kayıt',
+                  'Geri Dön',
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ),
