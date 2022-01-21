@@ -76,7 +76,7 @@ class HomePageState extends State {
                                       radius: 35.0,
                                       child: ClipOval(
                                         child: Image.asset(
-                                          'profile.png',
+                                          'assets/profile.png',
                                           height: 85,
                                           width: 85,
                                         ),
