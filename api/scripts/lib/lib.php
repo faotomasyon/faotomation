@@ -114,3 +114,28 @@ function insertCoachDetails($details)
 
     return true;
 }
+
+function insertJob($type, $value, $status)
+{
+    $conn = $GLOBALS['conn'];
+
+    $logger = $GLOBALS['logger'];
+    $errorLogger = $GLOBALS['errorLogger'];
+
+    $logger->info("Job adding type: $type");
+
+    $sql = 'INSERT INTO job (type, value, status)
+        VALUES(:type, :value, :status)';
+
+    $query = $conn->prepare($sql);
+    $query->bindParam(':type', $type, \PDO::PARAM_STR);
+    $query->bindParam(':value', $value, \PDO::PARAM_STR);
+    $query->bindParam(':status', $status, \PDO::PARAM_STR);
+
+    if (!$query->execute()) {
+        $errorLogger->error("Query could not execute. Error detail: " . json_encode($query->errorInfo()));
+        return false;
+    }
+
+    return $conn->lastInsertId();
+}

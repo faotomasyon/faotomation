@@ -35,3 +35,15 @@ $app->group('/coaches', function () {
     $this->delete('/{id:[0-9]+}', controller\CoachController::class . ':deleteCoach');
 
 })->add(new MainMiddleware($container));
+
+$app->group('/jobs', function () {
+
+    $this->get('', controller\JobsController::class . ':getJobs');
+    $this->get('/{id:[0-9]+}', controller\JobsController::class . ':getJobById');
+    $this->post('', controller\JobsController::class . ':addJob');
+    $this->put('/{id:[0-9]+}', controller\JobsController::class . ':updateJob');
+    $this->put('/values/{id:[0-9]+}', controller\JobsController::class . ':updateJobValue');
+    $this->put('/status/{id:[0-9]+}', controller\JobsController::class . ':updateJobStatus');
+    $this->delete('/{id:[0-9]+}', controller\JobsController::class . ':deleteJob');
+
+})->add(new MainMiddleware($container));

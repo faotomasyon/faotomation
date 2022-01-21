@@ -8,7 +8,7 @@ CREATE TABLE `users` (
 	`role` varchar(255) NULL DEFAULT 0,
 	`status` varchar(255) NULL DEFAULT 0,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
 	) ENGINE = InnoDB;
 
 CREATE TABLE `player_details` (
@@ -30,7 +30,7 @@ CREATE TABLE `player_details` (
 	`countinutiy` varchar(255) NULL,
 	`statistics` varchar(255) NULL,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
   ) ENGINE = InnoDB;
 
 CREATE TABLE `classes` (
@@ -39,7 +39,7 @@ CREATE TABLE `classes` (
 	`coach_id` timestamp NULL,
 	`status` varchar(255) NULL DEFAULT 0,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
   ) ENGINE = InnoDB;
 
 CREATE TABLE `classes_players` (
@@ -61,7 +61,7 @@ CREATE TABLE `coach_details` (
 	`class_id` int NULL,
 	`statistics` varchar(255) NULL,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
   ) ENGINE = InnoDB;
 
 CREATE TABLE `classes_coaches` (
@@ -75,7 +75,7 @@ CREATE TABLE `coach_notes` (
 	`coach_id` int NOT NULL,
 	`notes` varchar(255) NOT NULL,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
   ) ENGINE = InnoDB;
 
 CREATE TABLE `job` (
@@ -84,7 +84,7 @@ CREATE TABLE `job` (
 	`value` varchar(255) NOT NULL,
 	`status` varchar(255) NULL DEFAULT 0,
 	`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-	`uploaded_at` timestamp NULL
+	`updated_at` timestamp NULL
   ) ENGINE = InnoDB;
 
 ALTER TABLE `player_details` ADD FOREIGN KEY (`id`) REFERENCES `users` (`id`);

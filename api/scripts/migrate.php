@@ -34,7 +34,17 @@ $logger->info("# SCRIPT STARTED #");
 $dbConnection = new Db();
 $conn = $dbConnection->connect();
 
-$queries = [ 
+$queries = [
+      'SET FOREIGN_KEY_CHECKS = 0;',
+      'DROP TABLE users',
+      'DROP TABLE player_details',
+      'DROP TABLE classes',
+      'DROP TABLE classes_players',
+      'DROP TABLE coach_details',
+      'DROP TABLE classes_coaches', 
+      'DROP TABLE job', 
+      'DROP TABLE coach_notes', 
+      'SET FOREIGN_KEY_CHECKS = 1;', 
       "CREATE TABLE `users` (
         `id` int PRIMARY KEY AUTO_INCREMENT,
         `name` varchar(255) NOT NULL,

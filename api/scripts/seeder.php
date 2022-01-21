@@ -121,6 +121,21 @@ for ($i = 0; $i < 10; $i++) {
 
     }
 
+    /**
+     * @Status;
+     *      0 => awaiting
+     *      1 => running
+     *      2 => completed
+    */
+
+    /**
+     * @Type;
+     *      0 => Otomatik yoklama
+     *      1 => Otomatik Mail
+     *      2 => Istatik cikarma
+    */    
+    insertJob(rand(0, 2), $faker->unixTime(), rand(0, 2));
+
 }
 
 
