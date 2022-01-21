@@ -1,0 +1,246 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+}
+.sidebar{
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: rgba(47, 128, 237, 1);
+    z-index: 100;
+}
+.sidebar-brand span{
+    display: inline-block;
+    padding-right: 1rem;
+}
+.sidebar-menu{
+    margin-top: .5rem;
+}
+.sidebar-menu li{
+    width: 100%;
+    margin-bottom: 1.3rem;
+    padding-left: 1rem;
+}
+.sidebar-menu a{
+    display: block;
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+}
+.sidebar-menu a span:first-child{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+.sidebar-altmenu{
+    margin-top: 200px;
+    margin-bottom: 1rem;
+}
+.sidebar-altmenu li{
+    padding-left: 1rem;
+    margin-bottom: 1.2rem;
+}
+.sidebar-altmenu a{
+    display: block;
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+}
+.sidebar-altmenu a span:first-child{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+.main-content{
+    margin-left: 250px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    left: 250px;
+    width: calc(100% - 250px);
+    top: 0;
+    z-index: 100;
+}
+header h2{
+    color: #252733;
+   
+}
+.search-wrapper{
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+}
+.search-wrapper span{
+    display: inline-block;
+    padding: 0rem 1rem;
+    font-size: 1.5rem;
+}
+.search-wrapper input{
+    height: 100%;
+    padding: .5rem;
+    border: none;
+    outline: none;
+}
+.search-wrapper{
+    display: flex;
+    align-items: center;
+}
+.search-wrapper span{
+    display: inline-block;
+    padding: 0rem 1rem;
+    font-size: 1.5rem;
+}
+.search-wrapper input{
+    height: 100%;
+    padding: .5rem;
+    border: none;
+    outline: none;
+}
+.user-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.user-wrapper img{
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.user-wrapper small{
+    display: inline-block;
+    color: #252733;
+    margin-top: -3px !important;
+}
+main{
+    margin-top: 60px;
+    padding: 2rem;
+    width: auto;
+}
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 15px;
+    align-items: center;
+}
+.Aktiffutbolcu{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    width: 120px;
+    margin-top: 1px;
+    margin-right: 10px;
+    padding: 20px;
+    padding-left: 3px;
+    background-color: rgba(249, 86, 45, 1);
+    border-radius: 20px;
+    color: white;
+}
+.Aktiffutbolcu h2{
+    color: black;
+    text-align: center;
+    font-size: 22px;
+    padding: 18px;
+}
+.Aktiffutbolcu span{
+    font-size: 16px;
+}
+.Aktifantrenor{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    width: 120px;
+    margin-top: 1px;
+    margin-right: 10px;
+    padding: 20px;
+    padding-left: 3px;
+    background-color: rgba(55, 81, 255, 1);
+    border-radius: 20px;
+    color: white;
+}
+.Aktifantrenor h2{
+    color: black;
+    text-align: center;
+    font-size: 22px;
+    padding: 18px;
+}
+.Aktifantrenor span{
+    font-size: 16px;
+    text-align: center;
+}
+.Kazanilanturnivalar{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    width: 120px;
+    margin-top: 1px;
+    margin-right: 10px;
+    padding: 20px;
+    padding-left: 3px;
+    background-color: rgba(18, 192, 94, 1);
+    border-radius: 20px;
+    color: white;
+}
+.Kazanilanturnivalar h2{
+    color: black;
+    text-align: center;
+    font-size: 22px;
+}
+.Kazanilanturnivalar span{
+    font-size: 16px;
+    text-align: center;
+}
+.Kaybedilenturnivalar{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    width: 120px;
+    margin-top: 1px;
+    margin-right: 10px;
+    padding: 20px;
+    padding-left: 3px;
+    background-color: rgba(114, 33, 216, 1);
+    border-radius: 20px;
+    color: white;
+}
+.Kaybedilenturnivalar h2{
+    color: black;
+    text-align: center;
+    font-size: 22px;
+}
+.Kaybedilenturnivalar span{
+    font-size: 16px;
+    text-align: center;
+}
+header .header2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 15px;
+    align-items: center;
+}
+.header2 .istatistik{
+    padding: 20px;
+    margin: 150px;
+    margin-left: 1px;
+}
+.header2 .havadurumu{
+   float: right;
+   margin-top: 50px;
+   padding: 5px;
+}
+.header2 h3{
+    text-align: center;
+    padding: 13px;
+    margin: 10px;
+    margin-left: 45%;
+}
+
